@@ -95,6 +95,19 @@ int main(void)
         if (strcmp(args[0], "exit") == 0) {
             break;
         }
+      
+			  // Change Directory using chdir()
+				else if (strcmp(args[0], "cd") == 0) {
+				   char *homeDirectory = getenv("HOME");
+					 char *directory = (args_count > 1) ? args[1]: homeDirectory;
+
+					 if (chdir(directory) == -1) {
+					    perror("chdir");
+					}
+					
+					continue;
+		}
+ 
 
         #if DEBUG
 
