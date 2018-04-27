@@ -3,6 +3,13 @@
 #include <unistd.h>
 #include <string.h>
 
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <errno.h>
+#include <signal.h>
+
 #define PROMPT "lambda-shell$ "
 
 #define MAX_TOKENS 100
@@ -101,7 +108,13 @@ int main(void)
         #endif
         
         /* Add your code for implementing the shell's logic here */
-        
+       
+			 if (fork() == 0) {
+			   execvp(args[0], args);
+				}
+				 else {
+				   wait(NULL);
+				}
     }
 
     return 0;
