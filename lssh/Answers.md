@@ -32,7 +32,11 @@ Add your answers inline, below, with your pull request.
 	 command has no effect on them. 
 
 3. Describe the job of the Scheduler in the OS in general.
-      
+    
+	 A Scheduler is responsible for managing processes in the Operating System that the CPU should execute at a certain time. It manages the order of operations based on priority
+	 and allocated system resources. Here are examples of the scheduling algorithms: First In First Out, Earliest deadline first, Shortest Job First, Shortest remaining time first, 
+	 fixed priority pre-emptive, Round Robin, Multilevel queue and work-conserving.
 
 4. Describe the benefits of the MLFQ over a plain Round-Robin scheduler.
+    A plain Round-Robin scheduler has a 
 
