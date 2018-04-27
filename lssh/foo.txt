@@ -1,0 +1,5 @@
+total 24
+-rwxrwxr-x 1 eileen eileen     0 Apr 27 10:11 foo.txt
+-rwxrwxr-x 1 eileen eileen 13704 Apr 27 10:10 lssh
+-rw-rw-r-- 1 eileen eileen  3980 Apr 27 10:05 lssh.c
+-rw-rw-r-- 1 eileen eileen    40 Apr 27 09:05 Makefile

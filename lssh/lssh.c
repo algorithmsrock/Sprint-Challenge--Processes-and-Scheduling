@@ -107,8 +107,29 @@ int main(void)
 					
 					continue;
 		}
- 
+           // Handle Background Tasks
+				  // nohangup = No hang up
+			   //  Tracks status for background tasks
+        int nohangup = 0;
+				if (strcmp(args[args_count - 1], "&") == 0) {
+				   args[args_count - 1] = NULL;
+					 nohangup = 1;
+				}
+        // Handle Output to File
+				// Print Output to a file
+				int outputtoFile = 0;
 
+				char *outputFile;
+				for (int i = 1; args[i] != NULL; i++) {
+				  if (strcmp(args[i], ">") == 0) {
+					    outputtoFile = 1;
+							outputFile = args[i + 1];
+					 }
+					 if (outputtoFile == 1) {
+					     args[i] = NULL;
+					}
+			}
+				
         #if DEBUG
 
         // Some debugging output
@@ -123,12 +144,24 @@ int main(void)
         /* Add your code for implementing the shell's logic here */
        
 			 if (fork() == 0) {
-			   execvp(args[0], args);
+			     if (outputtoFile == 1) {
+					   int fd = open(outputFile, O_WRONLY | O_CREAT, 0777);
+						 dup2(fd, 1);
+						 close(fd);
+						}
+          
+				   execvp(args[0], args);
+
+					 exit(0);
+				
 				}
 				 else {
+				   if (nohangup == 1) {
+					 while (waitpid(-1, NULL, WNOHANG) > 0);
+					 } else {
 				   wait(NULL);
 				}
     }
-
+ }
     return 0;
 }
